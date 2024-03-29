@@ -1,6 +1,49 @@
 \section{Development}
-\begin{frame}{<title>}
-\begin{center}
-    
-\end{center}
+\begin{frame}{Development}
+\begin{itemize}
+    \item EEG MI Classificator
+    \item Dataset Augmentation Technique
+    \item Virtual Environment
+    \item Project Testing Pipeline
+\end{itemize}
+\end{frame}
+
+\begin{frame}{EEG MI Classifier - Baseline Methods}
+\begin{itemize}
+    \item \textbf{CSP + LDA}: Common Spatial Patterns + Linear Discriminant Analysis
+    \item \textbf{TGSP + SVM}: Tangent Space Projection + Support Vector Machine
+    \item \textbf{MDM}: Minimum Distance Mean
+    \item \textbf{EEGNet}: Convolutional Neural Network for Motor Imagery Classification
+\end{itemize}
+\end{frame}
+
+\begin{frame}{EEG MI Classifier - Proposed Method}
+    LSTM based Approach\\
+    (Also Self Attention, but cannot train, too many resources required)\\
+    ...
+\end{frame}
+
+\begin{frame}{Dataset Augmentation Technique}
+    \begin{itemize}
+        \item GAN based Approach $\rightarrow{}$ WIP (generators were bad)
+        \item Stochastic Noise Injection Approach $\rightarrow{}$ TODO
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Virtual Environment}
+\begin{itemize}
+    \item Unity3D based Environment
+    \item Infinite Runner (like Temple Run) $\rightarrow{}$ Left, Right and Jump actions $\rightarrow{}$ To Test
+    \item Maze Escape $\rightarrow{}$ Left, Right and Forward actions $\rightarrow{}$ TODO
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Project Testing Pipeline}
+    \begin{itemize}
+        \item Keyboard Controls (W, A, D)
+        \item EEG Signals Generation (Up, Left, Right)
+        \item Signal Classification
+        \item Classification Transmission (Via WebSocket)
+        \item Virtual Character Control
+    \end{itemize}
 \end{frame}
