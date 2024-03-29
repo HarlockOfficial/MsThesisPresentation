@@ -1,0 +1,58 @@
+\documentclass[xcolor=x11names,compress]{beamer}
+%% General document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{decorations.fractals}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Beamer Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\useoutertheme[subsection=false,shadow]{miniframes}
+\useinnertheme{default}
+\usefonttheme{serif}
+\usepackage{palatino}
+\usepackage{setspace,textcomp,soul}
+
+\setbeamerfont{title like}{shape=\scshape}
+\setbeamerfont{frametitle}{shape=\scshape}
+\definecolor{bluUnicam}{RGB}{27,43,74}
+\definecolor{redUnicam}{RGB}{219,0,36}
+\definecolor{orangeUnicam}{RGB}{234,114,40}
+\setbeamercolor*{lower separation line head}{bg=redUnicam} 
+\setbeamercolor*{normal text}{fg=bluUnicam,bg=white} 
+\setbeamercolor*{alerted text}{fg=red} 
+\setbeamercolor*{example text}{fg=black} 
+\setbeamercolor*{structure}{fg=orangeUnicam} 
+\setbeamercolor*{frametitle}{fg=redUnicam}
+
+\setbeamercolor*{palette tertiary}{fg=orangeUnicam,bg=bluUnicam} 
+\setbeamercolor*{palette quaternary}{fg=black,bg=black!10} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Author data and Logo %%%%%%%%%%%%%%%%%%%%%%%%%%
+\subtitle{SUBTITLE}
+\author[shortname]{
+    {\textbf{Nome Cognome}\inst{1}}\\
+    \fontsize{8pt}{10}\selectfont{nome.cognome@studenti.unicam.it}
+    \institute[shortinst]{
+        \fontsize{6pt}{6}\selectfont{\inst{1}University of Camerino, Italy}
+    }
+}
+
+\date{
+	\begin{figure}[htpb!]
+    	\centering
+        \includegraphics[width=0.10\textwidth]{figures/logo}
+    \end{figure}
+    %\today
+}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/titlepage/titlepage}
+\input{sections/titlepage/outline}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{sections/acknowledgements/acknowledgements}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
