@@ -1,62 +1,53 @@
 \section{Literature Review}
 \begin{frame}{Literature Review}
-\begin{itemize}
-    \item EEG MI Classifier
-    \item Dataset Augmentation
-    \item User Game Feel and Experience
-    \item EEG MI Uses in Real Case-Scenarios
-\end{itemize}
-\end{frame}
-
-\begin{frame}{EEG MI Classifier}
-\begin{figure}
-    \includegraphics[width=0.45\textwidth]{figures/literature/classifier/EEGNet_paper}
-    \includegraphics[width=0.45\textwidth]{figures/literature/classifier/LSTM_Transformer_paper}
-\end{figure}
-%\begin{itemize}
-%    \item CNN-based approaches
-%    \item LSTM-based approaches
-%    \item Transformer-based approaches
-%\end{itemize}
-\end{frame}
-
-\begin{frame}{Dataset Augmentation}
-\begin{figure}
-    \includegraphics[width=0.45\textwidth]{figures/literature/augmentation/EEGFuseNet_paper}
-    \includegraphics[width=0.45\textwidth]{figures/literature/augmentation/NoiseInjection_paper}
-\end{figure}
-% \begin{itemize}
-%     \item GAN-based approaches $\rightarrow$ \textit{EEGFuseNet}
-%     \item Noise Injection approaches
-% \end{itemize}
-\end{frame}
-
-\begin{frame}{User Game Feel and Experience}
-\begin{figure}
-    \includegraphics[width=0.45\textwidth]{figures/literature/gamefeel/GameFeel_book}
-    \includegraphics[width=0.45\textwidth]{figures/literature/gamefeel/BCI_Game_paper}
-\end{figure}
-%\begin{itemize}
-%    \item Game Feel (Book)
-%    \item BCI Games Based on Consumer-Grade EEG Devices (Literature Review)
-%\end{itemize}
-\end{frame}
-
-\begin{frame}{EEG MI Uses in Real Case-Scenarios}
-\begin{figure}
-    \includegraphics[width=0.3\textwidth]{figures/literature/realcase/StrokeRehabilitation_paper}
-    \includegraphics[width=0.3\textwidth]{figures/literature/realcase/ProsthesisControl_paper}
-    \raisebox{0.6\height}{\includegraphics[width=0.3\textwidth]{figures/literature/realcase/WheelchairControl_paper}}
-\end{figure}
-\vspace*{-4cm}
-\begin{figure}
-    \includegraphics[width=0.3\textwidth]{figures/literature/realcase/limb_control}
-    \raisebox{0.7\height}{\includegraphics[width=0.3\textwidth]{figures/literature/realcase/wheelchair_control}}
-\end{figure}
-%\begin{itemize}
-%    \item Limb Prosthesis
-%    \item Limb Rehabilitation
-%    \item Stroke Rehabilitation
-%    \item Wheelchair Control
-%\end{itemize}
+    \begin{minipage}[c]{0.65\textwidth}
+        \begin{itemize}
+            \item EEG MI Classifier
+            \item Dataset Augmentation
+            \item User Game Feel and Experience
+            \item EEG MI Uses in Real Case-Scenarios
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[c]{0.33\textwidth}
+        \vspace*{-.5cm}
+        \hspace*{-.7cm}
+        \begin{tikzpicture}
+            \node (page1) [yshift=4.5cm, xshift=-.5cm, rotate=30] {
+                \includegraphics[width=0.4\textwidth]{figures/literature/classifier/EEGNet_paper}
+            };
+            \node (page2) [yshift=4.5cm, xshift=.5cm, rotate=-30] {
+                \includegraphics[width=0.4\textwidth]{figures/literature/classifier/LSTM_Transformer_paper}
+            };
+            %
+            \node (page3) [yshift=3cm, xshift=-.5cm, rotate=30] {
+                \includegraphics[width=0.4\textwidth]{figures/literature/augmentation/EEGFuseNet_paper}
+            };
+            \node (page4) [yshift=3cm, xshift=.5cm, rotate=-30] {
+                \includegraphics[width=0.4\textwidth]{figures/literature/augmentation/NoiseInjection_paper}
+            };
+            %
+            \node (page5) [yshift=1.5cm, xshift=-.5cm, rotate=30] {
+                \includegraphics[width=0.4\textwidth]{figures/literature/gamefeel/GameFeel_book}
+            };
+            \node (page6) [yshift=1.5cm, xshift=.5cm, rotate=-30] {
+                \includegraphics[width=0.4\textwidth]{figures/literature/gamefeel/BCI_Game_paper}
+            };
+            %
+            \node (page10) [yshift=0cm, xshift=-1.5cm, rotate=30] {
+                \includegraphics[width=0.4\textwidth]{figures/literature/realcase/limb_control}
+            };
+            \node (page11) [yshift=0cm, xshift=1.5cm, rotate=-30] {
+                \includegraphics[width=0.4\textwidth]{figures/literature/realcase/wheelchair_control}
+            };
+            \node (page7) [yshift=0cm, xshift=-.5cm, rotate=30] {
+                \includegraphics[width=0.4\textwidth]{figures/literature/realcase/StrokeRehabilitation_paper}
+            };
+            \node (page8) [yshift=0cm, xshift=.5cm, rotate=-30] {
+                \includegraphics[width=0.4\textwidth]{figures/literature/realcase/ProsthesisControl_paper}
+            };
+            \node (page9) [yshift=0cm, xshift=0cm, rotate=0] {
+                \includegraphics[width=0.4\textwidth]{figures/literature/realcase/WheelchairControl_paper}
+            };
+        \end{tikzpicture}
+    \end{minipage}
 \end{frame}
