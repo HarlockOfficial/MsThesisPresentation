@@ -1,5 +1,5 @@
 \section{Development \& Results}
-\begin{frame}{Development \& Results}
+\begin{frame}{Development \& Results - Current Progress}
 Development is divided into:
 \begin{itemize}
     \item EEG MI Classifier
@@ -66,8 +66,8 @@ Development is divided into:
     \begin{minipage}[c]{.65\textwidth}            
         From ``\textbf{Data Augmentation for Deep Neural Networks Model in EEG Classification Task: A Review}'' by \textit{C. He et al} (2021) I created a script to generate data using:
         \begin{itemize}
-            \item Stochastic Noise Injection Approach $\rightarrow{}$ Good Results
-            \item Stochastic Generation Approach $\rightarrow{}$ Bad Results
+            \item Stochastic Noise Injection Approach\\$\rightarrow{}$ Good Results
+            \item Stochastic Generation Approach\\$\rightarrow{}$ Bad Results
         \end{itemize}
     \end{minipage}
     \begin{minipage}[c]{.33\textwidth}
@@ -85,7 +85,7 @@ Development is divided into:
             \item Keyboard Controls (W/Space, A, D)
             \item EEG Signals Generation (Feet, Left Hand, Right Hand)
             \item Signal Classification
-            \item Classification Transmission (Via WebSocket)
+            \item Classification Transmission\\(Via WebSocket)
             \item Virtual Character Control
         \end{itemize}
     \end{minipage}
@@ -103,4 +103,107 @@ Development is divided into:
             }
         \end{figure}
     \end{minipage}
+\end{frame}
+
+\begin{frame}{Pipeline Timeline}
+    % using the following time durations create a sequential timeline using tikz
+    % from 13 to 80 ms time to process seen image to recognise objects
+    % from 100 to 140 ms to generate a motor response
+    % 500 ms motor response recording
+    % from 1 to 12 ms to classify a signal
+    % <1 ms to send the signal to the application
+
+    \begin{tikzpicture}
+        % Horizontal line
+        \draw[thick] (0,0) -- (7.6625,0);
+        \draw[thick, dashed] (7.6625,0) -- (8.15,0);
+        \draw[thick, -Triangle] (8.15,0) -- (10,0);
+        % \draw[thick, dashed] (9,0) -- (9.5,0);
+        % \draw[thick, -Triangle] (9,0) -- (10,0) node[font=\scriptsize,below left=3pt and -8pt]{\textbf{ms}};
+
+        % Start of the timeline
+        \draw (0,-0.1) -- (0,0.1) node[font=\scriptsize,below left=3pt and -6pt]{\textbf{0}};
+        \node[font=\scriptsize,left=3pt] at (0,0) [anchor=east]{\textbf{Min}};
+
+        % Image Processing Time
+        \draw (0.1625, -0.1) -- (0.1625, 0.1) node[font=\scriptsize,below left=3pt and -10pt]{\textbf{\textcolor{olive}{13}}};
+        \fill[purple] (0, 0.2) rectangle (0.1625, 0.4);
+        
+        % \draw (1, -0.1) -- (1, 0.1) node[font=\scriptsize,below left=3pt and -8pt]{\textbf{\textcolor{red}{80}}};
+        % \fill[purple] (0,-0.4) rectangle (1,-0.6);
+        
+        % Motor Response Time
+        \draw (1.4125, -0.1) -- (1.4125, 0.1) node[font=\scriptsize,below left=3pt and -10pt]{\textbf{\textcolor{olive}{113}}};
+        \fill[blue] (0.1625, 0.4) rectangle (1.4125, 0.6);
+
+        % \draw (2.75, -0.1) -- (2.75, 0.1) node[font=\scriptsize,below left=3pt and -10pt]{\textbf{\textcolor{red}{220}}};
+        % \fill[blue] (1,-0.6) rectangle (2.75,-0.8);
+
+        % Motor Response Recording Time
+        \draw (7.6625, -0.1) -- (7.6625, 0.1) node[font=\scriptsize,below left=3pt and -8pt]{\textbf{\textcolor{olive}{613}}};
+        \fill[red] (1.4125, 0.6) rectangle (7.6625, 0.8);
+
+        % \draw (9, -0.1) -- (9, 0.1) node[font=\scriptsize,below left=3pt and -10pt]{\textbf{\textcolor{red}{720}}};
+        % \fill[red] (2.75,-0.8) rectangle (9,-1);
+
+        % Signal Classification Time
+        \draw (8.15, -0.1) -- (8.15, 0.1) node[font=\scriptsize,below left=3pt and -10pt]{\textbf{\textcolor{olive}{614}}};
+        \fill[amethyst] (7.6625, 0.8) rectangle (8.15, 1);
+
+        % \draw (9.5, -0.1) -- (9.5, 0.1) node[font=\scriptsize,below left=3pt and -10pt]{\textbf{\textcolor{red}{732}}};
+        % \fill[amethyst] (9,-1) rectangle (9.5,-1.2);
+
+        % diff curly brace
+        % \draw [decorate,decoration={brace,amplitude=5pt}] (8.15, 1) -- (9.5,1) node [anchor=south,midway,above=4pt] {\footnotesize Signal Received by Application};
+    \end{tikzpicture}
+    \begin{tikzpicture}
+            % Horizontal line
+            \draw[thick] (0,0) -- (9,0);
+            % \draw[thick, dashed] (7.6625,0) -- (8.15,0);
+            % \draw[thick] (8.15,0) -- (9,0);
+            \draw[thick, dashed] (9,0) -- (9.5,0);
+            \draw[thick, -Triangle] (9.5,0) -- (10,0) node[font=\scriptsize,below left=3pt and -8pt]{\textbf{ms}};
+    
+            % Start of the timeline
+            \draw (0,-0.1) -- (0,0.1) node[font=\scriptsize,below left=3pt and -6pt]{\textbf{0}};
+            \node[font=\scriptsize,left=3pt] at (0,0) [anchor=east]{\textbf{Max}};
+    
+            % Image Processing Time
+            % \draw (0.1625, -0.1) -- (0.1625, 0.1) node[font=\scriptsize,below left=3pt and -10pt]{\textbf{\textcolor{olive}{13}}};
+            % \fill[purple] (0, 0.2) rectangle (0.1625, 0.4);
+            
+            \draw (1, -0.1) -- (1, 0.1) node[font=\scriptsize,below left=3pt and -8pt]{\textbf{\textcolor{red}{80}}};
+            \fill[purple] (0,0.2) rectangle (1,0.4);
+            
+            % Motor Response Time
+            % \draw (1.4125, -0.1) -- (1.4125, 0.1) node[font=\scriptsize,below left=3pt and -10pt]{\textbf{\textcolor{olive}{113}}};
+            % \fill[blue] (0.1625, 0.4) rectangle (1.4125, 0.6);
+    
+            \draw (2.75, -0.1) -- (2.75, 0.1) node[font=\scriptsize,below left=3pt and -10pt]{\textbf{\textcolor{red}{220}}};
+            \fill[blue] (1,0.4) rectangle (2.75,0.6);
+    
+            % Motor Response Recording Time
+            % \draw (7.6625, -0.1) -- (7.6625, 0.1) node[font=\scriptsize,below left=3pt and -8pt]{\textbf{\textcolor{olive}{613}}};
+            % \fill[red] (1.4125, 0.6) rectangle (7.6625, 0.8);
+    
+            \draw (9, -0.1) -- (9, 0.1) node[font=\scriptsize,below left=3pt and -10pt]{\textbf{\textcolor{red}{720}}};
+            \fill[red] (2.75,0.6) rectangle (9,0.8);
+    
+            % Signal Classification Time
+            % \draw (8.15, -0.1) -- (8.15, 0.1) node[font=\scriptsize,below left=3pt and -10pt]{\textbf{\textcolor{olive}{614}}};
+            % \fill[amethyst] (7.6625, 0.8) rectangle (8.15, 1);
+    
+            \draw (9.5, -0.1) -- (9.5, 0.1) node[font=\scriptsize,below left=3pt and -10pt]{\textbf{\textcolor{red}{732}}};
+            \fill[amethyst] (9,0.8) rectangle (9.5,1);
+    
+            % diff curly brace
+            % \draw [decorate,decoration={brace,amplitude=5pt}] (8.15, 1) -- (9.5,1) node [anchor=south,midway,above=4pt] {\footnotesize Signal Received by Application};    
+    \end{tikzpicture}
+    \begin{itemize}
+        \item \textcolor{purple}{Brain Processing Image Time:} 13-80 ms
+        \item \textcolor{blue}{Brain Motor Response Activation Time:} 100-140 ms
+        \item \textcolor{red}{BCI Motor Response Recording Time:} 500 ms
+        \item \textcolor{amethyst}{Signal Classification Time:} 1-12 ms
+        \item Classification Sent to Application: $\approx$1 ms (localhost)
+    \end{itemize}
 \end{frame}
