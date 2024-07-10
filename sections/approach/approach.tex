@@ -1,0 +1,153 @@
+\section{Approach}
+\begin{frame}{Approach}
+    \begin{itemize}
+        \item Data Collection
+        \item Data Augmentation
+        \item Classification Model
+        \item Virtual Environment
+        \item The Framework
+    \end{itemize}
+\end{frame}
+
+\subsection*{Data Collection}
+\begin{frame}{Data Collection}
+    \begin{table}[!htbp] 
+        \centering 
+        \scalebox{.7}[1]{
+            \begin{tabular}{|c|c|c|c|} 
+                \hline 
+                \textbf{Dataset Name} & \textbf{Number of
+    Subjects} & \textbf{Number of Tasks} & \textbf{Number of Channels}\\
+                \hline
+                \hline 
+                Physionet & 109 & 4 & 64\\ 
+                \hline 
+                Weibo & 10 & 6 & 60\\ 
+                \hline 
+                \hline
+                Reduced Physionet & 109 & 4 & 58\\
+                \hline 
+            \end{tabular} 
+        }
+    \end{table}
+\end{frame}
+
+\subsection*{Data Augmentation}
+\begin{frame}{Data Augmentation}
+    \begin{itemize}
+        \item Stochastic Noise Injection
+        \item Generative Adversarial Networks (GAN)
+    \end{itemize}
+\end{frame}
+\begin{frame}{Data Augmentation \textemdash{} Noise Injection}
+    \begin{figure}[!htbp]
+        \centering
+        \begin{tikzpicture}[
+            squarednode/.style={rectangle, draw=black, very thick, minimum size=5mm},
+            ]
+            \node[squarednode] (dataset) {Dataset};
+            \node (none3) [right=of dataset] {~};
+            \node[squarednode] (sample) [right=of none3] {Sample};
+            \node (none) [below=of dataset] {~};
+            \node (none2) [below=of sample] {~};
+            \node (none4) [below=of none] {~};
+            \node (none3) [right=of none4] {~};
+            \node[squarednode] (noise) [right=of none3] {Noise};
+            \node[squarednode] (plus) [right=of none2] {+};
+            \node[squarednode] (output) [right=of plus] {Output};
+    
+            \draw[->] (dataset) -- node [above] {extract} (sample) ;
+            \draw[->] (none4) -- node [above] {generate} (noise) ;
+            \draw[->] (sample) -- node [right] {~~add} (plus) ;
+            \draw[->] (noise) -- (plus) ;
+            \draw[->] (plus) -- (output) ;
+        \end{tikzpicture}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Data Augmentation \textemdash{} GAN}
+    \begin{figure}[!htbp]
+        \centering
+        \scalebox{0.8}{
+        \begin{tikzpicture}[
+            squarednode/.style={rectangle, draw=black, very thick, minimum size=5mm},
+            ]
+            \node[squarednode] (noise) {Noise};
+            \node[squarednode] (generator) [right=of noise] {Generator};
+            \node[squarednode] (fake_data) [right=of generator] {Fake Data};
+            \node (none) [above=of fake_data] {~};
+            \node[squarednode] (real_data) [above=of none] {Real Data};
+            \node[squarednode] (discriminator) [right=of none] {Discriminator};
+            \node[squarednode, dashed] (loss) [right=of discriminator] {Loss};
+
+            \draw[->] (noise) -- (generator);
+            \draw[->] (generator) -- (fake_data);
+            \draw[->] (real_data) -- (discriminator);
+            \draw[->] (fake_data) -- (discriminator);
+            \draw[dashed, ->] (discriminator) -- (loss);
+            \draw[dashed, ->] (loss) to[out=-90, in=-90] (generator);
+            \draw[dashed, ->] (loss) to[out=90, in=90] (discriminator);
+        \end{tikzpicture}
+        }
+    \end{figure}
+\end{frame}
+
+\subsection*{Classification Model}
+\begin{frame}{Classification Model}
+    \begin{figure}[!htbp]
+        \centering
+        \scalebox{0.8}{
+        \begin{tikzpicture}[
+            squarednode/.style={rectangle, draw=black, very thick, minimum size=5mm},
+            ]
+            \node[squarednode] (input_data) {Input Data};
+            \node[squarednode] (rearrange) [below=of input_data] {Rearrange Data};
+            \node[squarednode] (input_layer) [right=of input_data] {Input Layer};
+            \node[squarednode] (lstm) [below=of input_layer] {LSTM};
+            \node[squarednode] (lstm2) [right=of input_layer] {LSTM};
+            \node[squarednode] (output_layer) [right=of lstm] {LSTM Output Filter};
+            \node[squarednode] (output) [right=of lstm2] {Output};
+            \node[squarednode] (softmax) [right=of output_layer] {Softmax};
+
+            \draw[->] (input_data) -- (rearrange);
+            \draw[->] (rearrange) -- (input_layer);
+            \draw[->] (input_layer) -- (lstm);
+            \draw[->] (lstm) -- (lstm2);
+            \draw[->] (lstm2) -- (output_layer);
+            \draw[->] (output_layer) -- (output);
+            \draw[->] (output) -- (softmax);
+        \end{tikzpicture}
+        }
+    \end{figure}
+\end{frame}
+
+\subsection*{Virtual Environment}
+\begin{frame}{Virtual Environment}
+    \begin{itemize}
+        \item Infinite Runner
+        \item Maze Walker
+    \end{itemize}
+\end{frame}
+
+\subsection*{The Framework}
+\begin{frame}{The Framework}
+    \begin{figure}[!htbp]
+        \centering
+        \scalebox{0.9}{
+        \begin{tikzpicture}[
+            squarednode/.style={rectangle, draw=black, very thick, minimum size=5mm},
+            ]
+            \node[squarednode] (keyboard) {Keyboard Input};
+            \node[squarednode] (data_augmentation) [below=of keyboard] {Data Augmentation};
+            \node[squarednode] (classification) [right=of keyboard] {Classification};
+            \node[squarednode] (websocket) [below=of classification] {Websocket};
+            \node[squarednode] (virtual_environment) [right=of classification] {Virtual Environment};
+
+            \draw[->] (keyboard) -- (data_augmentation);
+            \draw[->] (data_augmentation) -- (classification);
+            \draw[dashed, ->] (classification) -- (websocket);
+            \draw[dashed, ->] (websocket) -- (virtual_environment);
+        \end{tikzpicture}
+        }
+    \end{figure}
+\end{frame}
