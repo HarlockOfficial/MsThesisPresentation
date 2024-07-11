@@ -125,7 +125,16 @@
 \begin{frame}{Virtual Environment}
     \begin{itemize}
         \item Infinite Runner
+        \begin{itemize}
+            \item Automatic Forward Movement
+            \item Jumping
+            \item Moving Left and Right
+        \end{itemize}
         \item Maze Walker
+        \begin{itemize}
+            \item Moving Forward, Left, and Right
+            \item Collecting Coins
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -137,14 +146,33 @@
         \begin{tikzpicture}[
             squarednode/.style={rectangle, draw=black, very thick, minimum size=5mm},
             ]
-            \node[squarednode] (keyboard) {Keyboard Input};
-            \node[squarednode] (data_augmentation) [below=of keyboard] {Data Augmentation};
-            \node[squarednode] (classification) [right=of keyboard] {Classification};
+            \node[squarednode, dashed] (key_input) {
+                \begin{tikzpicture}[
+                    squarednode/.style={rectangle, draw=black, very thick, minimum size=5mm},
+                    ]
+                    \node[squarednode, solid] (keyboard) {Keyboard Input};
+                    \node[squarednode, solid] (data_augmentation) [below=of keyboard] {Data Augmentation};
+                    
+                    \draw[->, solid] (keyboard) -- (data_augmentation);
+                \end{tikzpicture}
+            };
+            \node[] (none) [below=of key_input] {~};
+            \node[squarednode, dashed] (EEG_input) [right=of key_input]{
+                \begin{tikzpicture}[
+                    squarednode/.style={rectangle, draw=black, very thick, minimum size=5mm},
+                    ]
+                    \node[squarednode, solid] (EEG) {EEG Input};
+                    \node[squarednode, solid] (data_filter) [below=of EEG] {Data Filtering};
+                    
+                    \draw[->, solid] (EEG) -- (data_filter);
+                \end{tikzpicture}
+            };
+            \node[squarednode] (classification) [right=of none] {Classification};
             \node[squarednode] (websocket) [below=of classification] {Websocket};
-            \node[squarednode] (virtual_environment) [right=of classification] {Virtual Environment};
+            \node[squarednode] (virtual_environment) [below=of websocket] {Virtual Environment};
 
-            \draw[->] (keyboard) -- (data_augmentation);
-            \draw[->] (data_augmentation) -- (classification);
+            \draw[->] (key_input) -- (classification);
+            \draw[->] (EEG_input) -- (classification);
             \draw[dashed, ->] (classification) -- (websocket);
             \draw[dashed, ->] (websocket) -- (virtual_environment);
         \end{tikzpicture}
