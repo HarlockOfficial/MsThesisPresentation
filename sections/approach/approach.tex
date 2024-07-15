@@ -1,16 +1,23 @@
 \section{Approach}
-\begin{frame}{Approach}
-    \begin{itemize}
-        \item Data Collection
-        \item Data Augmentation
-        \item Classification Model
-        \item Virtual Environment
-        \item The Framework
-    \end{itemize}
-\end{frame}
+% \begin{frame}{Approach}
+%     \begin{itemize}
+%         \item Data Collection
+%         \item Data Augmentation
+%         \item Classification Model
+%         \item Virtual Environment
+%         \item The Framework
+%     \end{itemize}
+% \end{frame}
 
 \subsection*{Data Collection}
 \begin{frame}{Data Collection}
+    Data are necessary for the training of the classification models. 
+    
+    \vspace*{.5cm}
+    The data are collected from two datasets: Physionet and Weibo.
+    
+    \vspace*{.5cm}
+    The third one is obtained by considering the common channels and the data points from Physionet.
     \begin{table}[!htbp] 
         \centering 
         \scalebox{.7}[1]{
@@ -32,12 +39,49 @@
     \end{table}
 \end{frame}
 
+\subsection*{Classification Model}
+\begin{frame}{Classification Model}
+    A classification model is an algorithm that learns to map input data to output labels.
+
+    \vspace*{.5cm}
+    Proposed LSTM-based architecture:
+    \begin{figure}[!htbp]
+        \centering
+        \scalebox{0.8}{
+        \begin{tikzpicture}[
+            squarednode/.style={rectangle, draw=black, very thick, minimum size=5mm},
+            ]
+            \node[squarednode] (input_data) {Input Data};
+            \node[squarednode] (rearrange) [below=of input_data] {Rearrange Data};
+            \node[squarednode] (input_layer) [right=of input_data] {Input Layer};
+            \node[squarednode] (lstm) [below=of input_layer] {LSTM};
+            \node[squarednode] (lstm2) [right=of input_layer] {LSTM};
+            \node[squarednode] (output_layer) [right=of lstm] {LSTM Output Filter};
+            \node[squarednode] (output) [right=of lstm2] {Output};
+            \node[squarednode] (softmax) [right=of output_layer] {Softmax};
+
+            \draw[->] (input_data) -- (rearrange);
+            \draw[->] (rearrange) -- (input_layer);
+            \draw[->] (input_layer) -- (lstm);
+            \draw[->] (lstm) -- (lstm2);
+            \draw[->] (lstm2) -- (output_layer);
+            \draw[->] (output_layer) -- (output);
+            \draw[->] (output) -- (softmax);
+        \end{tikzpicture}
+        }
+    \end{figure}
+\end{frame}
+
 \subsection*{Data Augmentation}
 \begin{frame}{Data Augmentation}
+    Data augmentation is a technique used to increase the size of the dataset by adding noise or generating new data.
     \begin{itemize}
         \item Stochastic Noise Injection
         \item Generative Adversarial Networks (GAN)
     \end{itemize}
+
+    \vspace*{.5cm}
+    We used Data Augmentation to test the model on unseen data.
 \end{frame}
 \begin{frame}{Data Augmentation \textemdash{} Noise Injection}
     \begin{figure}[!htbp]
@@ -92,54 +136,53 @@
     \end{figure}
 \end{frame}
 
-\subsection*{Classification Model}
-\begin{frame}{Classification Model}
-    \begin{figure}[!htbp]
-        \centering
-        \scalebox{0.8}{
-        \begin{tikzpicture}[
-            squarednode/.style={rectangle, draw=black, very thick, minimum size=5mm},
-            ]
-            \node[squarednode] (input_data) {Input Data};
-            \node[squarednode] (rearrange) [below=of input_data] {Rearrange Data};
-            \node[squarednode] (input_layer) [right=of input_data] {Input Layer};
-            \node[squarednode] (lstm) [below=of input_layer] {LSTM};
-            \node[squarednode] (lstm2) [right=of input_layer] {LSTM};
-            \node[squarednode] (output_layer) [right=of lstm] {LSTM Output Filter};
-            \node[squarednode] (output) [right=of lstm2] {Output};
-            \node[squarednode] (softmax) [right=of output_layer] {Softmax};
-
-            \draw[->] (input_data) -- (rearrange);
-            \draw[->] (rearrange) -- (input_layer);
-            \draw[->] (input_layer) -- (lstm);
-            \draw[->] (lstm) -- (lstm2);
-            \draw[->] (lstm2) -- (output_layer);
-            \draw[->] (output_layer) -- (output);
-            \draw[->] (output) -- (softmax);
-        \end{tikzpicture}
-        }
-    \end{figure}
-\end{frame}
 
 \subsection*{Virtual Environment}
 \begin{frame}{Virtual Environment}
+    A Virtual Environment is a simulated environment that represents a specific scenario or aspect of the real world.
+
+    \vspace*{.5cm}
+    To avoid the need for a physical device, such as proshtetic limbs or wheelchairs, we used a virtual environment in which we can test the classification model.
+
+    \vspace*{.5cm}
     \begin{itemize}
-        \item Infinite Runner
-        \begin{itemize}
-            \item Automatic Forward Movement
-            \item Jumping
-            \item Moving Left and Right
-        \end{itemize}
-        \item Maze Walker
-        \begin{itemize}
-            \item Moving Forward, Left, and Right
-            \item Collecting Coins
-        \end{itemize}
+        \item \textbf{Unity Engine}: User Friendliness, Development Speed and Portability
+        \item Ease of \textbf{Pipeline Test}
     \end{itemize}
 \end{frame}
+\begin{frame}{Virtual Environment~\textemdash{}~Infinite Runner}
+    \begin{minipage}[c]{.49\textwidth}
+        \begin{itemize}
+            \item \textbf{Constraints}: Automatic Forward (Run) Movement
+            \item \textbf{Freedom of Movement}: Jumping, Turning Left and Turning Right
+            \item \textbf{Objective}: Avoiding Obstacles, Collecting Coins
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[c]{.49\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\textwidth]{figures/Methodology/infinite_runner}
+        \end{figure}
+    \end{minipage}
+\end{frame}
+\begin{frame}{Virtual Environment~\textemdash{}~Maze Walker}
+    \begin{minipage}[c]{.49\textwidth}
+        \begin{itemize}
+            \item \textbf{Constraints}: Automatic Movememnt (Walk) after direction choice
+            \item \textbf{Freedom of Movement}: Forward, Turning Left and Turning Right
+            \item \textbf{Objective}: Collecting Coins
+        \end{itemize}    
+    \end{minipage}
+    \begin{minipage}[c]{.49\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\textwidth]{figures/Methodology/maze}
+        \end{figure}
+    \end{minipage}
+\end{frame}
 
-\subsection*{The Framework}
-\begin{frame}{The Framework}
+\subsection*{Full Framework}
+\begin{frame}{Full Framework}
     \begin{figure}[!htbp]
         \centering
         \scalebox{0.9}{
